@@ -11,24 +11,19 @@ export const useAccordionContext = () => {
     );
   }
 
-  return ctx
+  return ctx;
 };
 
 const Accordion = ({ children, className }) => {
   const [openItemId, setOpenItemId] = useState();
 
-  const openItem = (id) => {
-    setOpenItemId(id);
-  };
-
-  const closeItem = () => {
-    setOpenItemId(null);
+  const toggleItem = (id) => {
+    setOpenItemId((prevState) => (prevState === id ? null : id));
   };
 
   const contextValue = {
     openItemId,
-    openItem,
-    closeItem,
+    toggleItem,
   };
 
   return (

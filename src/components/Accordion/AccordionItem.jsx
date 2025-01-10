@@ -1,24 +1,16 @@
 import { useAccordionContext } from "./Accordion";
+import AccordionContent from "./AccordionContent";
+import AccordionTitle from "./AccordionTitle";
 
 const AccordionItem = ({ id, title, children, className }) => {
-  const { openItemId, openItem, closeItem } = useAccordionContext();
+  const { openItemId } = useAccordionContext();
 
   const isOpen = openItemId === id;
 
-  const handleClick = () => {
-    isOpen ? closeItem() : openItem(id);
-  };
-
   return (
     <li className={className}>
-      <h3 onClick={handleClick}>{title}</h3>
-      <div
-        className={
-          isOpen ? "accordion-item-content open" : "accordion-item-content"
-        }
-      >
-        {children}
-      </div>
+      <AccordionTitle id={id}>{title}</AccordionTitle>
+      <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
     </li>
   );
 };
